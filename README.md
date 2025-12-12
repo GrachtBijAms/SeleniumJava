@@ -27,11 +27,13 @@ This will execute the test methods in `TestSiteAutomation.java`, which include:
 - Searching for products
 - Adding items to cart
 
+The tests use TestNG framework with Page Object Model and PageFactory.
+
 ## Dependencies
 
 - Selenium WebDriver 4.15.0
 - WebDriverManager 5.5.3 (for automatic ChromeDriver management)
-- JUnit 5.10.0
+- TestNG 7.8.0
 
 ## Notes
 
