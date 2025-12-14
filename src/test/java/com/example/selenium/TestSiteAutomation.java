@@ -65,6 +65,30 @@ public class TestSiteAutomation {
         assertTrue(driver.getTitle().contains("Test Automation Practice Site"));
     }
 
+        @Test
+    public void invalidtestLogin() {
+        // Locate login form elements
+        WebElement usernameField = wait.until(ExpectedConditions.elementToBeClickable(By.id("username")));
+        WebElement passwordField = driver.findElement(By.id("password"));
+        WebElement loginButton = driver.findElement(By.id("login-btn"));
+
+        // Enter demo credentials
+        usernameField.sendKeys("123admin");
+        passwordField.sendKeys("password123");
+
+        // Click login
+        loginButton.click();
+
+        // Wait for some element that indicates successful login, e.g., a welcome message or change in page
+        // Since it's a test site, perhaps check if the login form is hidden or a success message appears
+        // For simplicity, just wait a bit and assert the title or something
+        wait.until(ExpectedConditions.textToBe(By.id("login-message"), "Invalid credentials."));
+        // Or check for a specific element
+        // Assuming after login, something changes, but from the page, it might not.
+        // Perhaps the site doesn't change much, so just verify the page loaded.
+        assertTrue(driver.getTitle().contains("Test Automation Practice Site"));
+    }
+
     @Test
     public void testSearchProducts() {
         // Locate search input
