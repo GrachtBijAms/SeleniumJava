@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+
 import java.time.Duration;
 
 public class HomePage {
@@ -53,10 +55,12 @@ public class HomePage {
     }
 
     public void enterPassword(String password) {
+        wait.until(ExpectedConditions.elementToBeClickable(passwordField));
         passwordField.sendKeys(password);
     }
 
     public void clickLogin() {
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
         loginButton.click();
     }
 
