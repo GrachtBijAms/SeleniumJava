@@ -191,5 +191,18 @@ public class TestSiteAutomation {
         assertTrue(driver.getTitle().contains("Test Automation Practice Site"));
     }
 
+    @Test
+    public void testiframeclick() {
+        // Switch to iframe
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("info-frame")));
+        // Click the button inside iframe
+        WebElement iframeButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("frame-btn")));
+        iframeButton.click();
+        // Verify the message after clicking
+        WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("frame-title")));
+        assertTrue(message.getText().equals("Clicked inside iframe!"));
+        // Switch back to main content
+        driver.switchTo().defaultContent();
+    }
 
 }
