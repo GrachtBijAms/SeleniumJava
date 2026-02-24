@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.time.Duration;
 
 import static org.testng.Assert.assertTrue;
@@ -26,7 +27,7 @@ public class TestSiteAutomation {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless");
+        options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
@@ -169,11 +170,13 @@ public class TestSiteAutomation {
             }
         }
         driver.switchTo().window(parent); // Back to main
+        wait.until(ExpectedConditions.titleContains("Test Automation Practice Site"));
+        assertTrue(homePage.getWindowMessage().equals("New window opened successfully!"));
 
     }
 
     @Test
-    public void testOpenSeleniumDevWindow() {
+    public void testOpenSeleniumDevWindowWithHelper() {
         WindowHelper windowHs = new WindowHelper(driver);
         // Click the button to open Selenium.dev window
         homePage.clickOpenSeleniumDevWindow();
