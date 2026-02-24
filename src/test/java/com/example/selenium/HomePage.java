@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
@@ -45,6 +44,15 @@ public class HomePage {
 
     @FindBy(id = "cart-count")
     private WebElement cartCount;
+
+    @FindBy(id="open-new-window-btn")
+    private WebElement openNewWindowButton;
+
+    @FindBy(id="window-message")
+    private WebElement windowMessage;
+
+    @FindBy(xpath = "//button[.='Open Selenium.dev Window']")
+    private WebElement openSeleniumDevWindowButton;
 
 
 
@@ -92,5 +100,21 @@ public class HomePage {
     public String getCartCount() {
         wait.until(ExpectedConditions.textToBePresentInElement(cartCount, "1"));
         return cartCount.getText();
+    }
+
+
+    public void clickOpenNewWindow( ) {
+        wait.until(ExpectedConditions.elementToBeClickable(openNewWindowButton));
+         openNewWindowButton.click();
+    }
+
+    public String getWindowMessage() {
+        wait.until(ExpectedConditions.visibilityOf(windowMessage));
+        return windowMessage.getText();
+    }  
+    
+    public void clickOpenSeleniumDevWindow() {
+        wait.until(ExpectedConditions.elementToBeClickable(openSeleniumDevWindowButton));
+        openSeleniumDevWindowButton.click();
     }
 }

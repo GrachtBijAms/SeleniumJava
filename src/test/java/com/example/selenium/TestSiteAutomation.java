@@ -26,7 +26,7 @@ public class TestSiteAutomation {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        //options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
@@ -150,5 +150,43 @@ public class TestSiteAutomation {
 
         // Verify cart count
         assertTrue(homePage.getCartCount().equals("1"));
+
     }
+    @Test
+    public void testOpenNewWindow() {
+        // Click the button to open a new window
+        homePage.clickOpenNewWindow(); 
+        // Store parent
+        String parent = driver.getWindowHandle();
+        System.out.println("Parent Window Handle: " + parent);
+        homePage.clickOpenNewWindow(); 
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(parent)) {
+                driver.switchTo().window(handle);
+                wait.until(ExpectedConditions.titleIs("Google"));
+                // Interact here
+                driver.close();
+            }
+        }
+        driver.switchTo().window(parent); // Back to main
+
+    }
+
+    @Test
+    public void testOpenSeleniumDevWindow() {
+        WindowHelper windowHs = new WindowHelper(driver);
+        // Click the button to open Selenium.dev window
+        homePage.clickOpenSeleniumDevWindow();
+        // Store parent
+        windowHs.switchToNewWindow();
+        wait.until(ExpectedConditions.titleContains("Selenium"));
+        // Interact here, e.g., check title
+        assertTrue(driver.getTitle().contains("Selenium"));
+        // Close new window and switch back
+        windowHs.closeNewWindowAndSwitchBack();
+        // Verify we're back on the main page
+        assertTrue(driver.getTitle().contains("Test Automation Practice Site"));
+    }
+
+
 }
