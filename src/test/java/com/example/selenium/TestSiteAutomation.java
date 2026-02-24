@@ -20,17 +20,18 @@ public class TestSiteAutomation {
     private WebDriver driver;
     private WebDriverWait wait;
     private HomePage homePage;
+    String url = "https://grachtbijams.github.io/playwrightJS/res/testsite.html";
 
     @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        //options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://grachtbijams.github.io/playwrightJS/res/testsite.html");
+        driver.get(url);
         homePage = new HomePage(driver); // Initialize page object
     }
 
