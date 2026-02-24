@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Suite">
+<suite name="Suite" parallel="classes" thread-count="2">
     <test name="Test">
         <classes>
             <class name="com.example.selenium.TestSiteAutomation"/>
+            <class name="com.example.selenium.TestAutomationLogin"/>
         </classes>
     </test>
 </suite>
