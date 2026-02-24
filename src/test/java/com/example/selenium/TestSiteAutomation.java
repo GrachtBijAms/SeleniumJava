@@ -87,7 +87,7 @@ public class TestSiteAutomation {
         homePage.login("admin", "password123");
 
         // Verify login (similar to before)
-        wait.until(ExpectedConditions.titleContains("Test Aut1omation Practice Site"));
+        wait.until(ExpectedConditions.titleContains("Test Automation Practice Site"));
         assertTrue(driver.getTitle().contains("Test Automation Practice Site"));
     }
 
